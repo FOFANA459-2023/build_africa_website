@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-neutral-800 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-brand-amber;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Triangle band inspired by the murals at the BUILD-IN-A-BOX venue. */
+  .pattern-triangles {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 64 32'%3E%3Cpath d='M0 32 16 0l16 32z' fill='%23ED1B24'/%3E%3Cpath d='M16 0h32L32 32z' fill='%23FBB12A'/%3E%3Cpath d='m32 32 16-32 16 32z' fill='%233F4F2B'/%3E%3C/svg%3E");
+    background-size: 32px 16px;
+    background-repeat: repeat-x;
+  }
+}

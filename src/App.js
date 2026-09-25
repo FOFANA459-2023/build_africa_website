@@ -1,42 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './componets/Navbar';
-import Footer from './componets/Footer';
-import Home from './componets/pages/Home';
-import About from './componets/pages/About';
-import Programs from './componets/pages/Programs';
-import Gallary from './componets/pages/Gallary';
-import Contact from './componets/pages/Contact';
-import Donate from './componets/pages/Donate';
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import About from './pages/About';
+import Programs from './pages/Programs';
+import Gallery from './pages/Gallery';
+import Contact from './pages/Contact';
+import Donate from './pages/Donate';
+import NotFound from './pages/NotFound';
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar />
-  
-      <Routes>
-        <Route path='/' element={<Home />} />
-      </Routes>
-      <Routes>
-        <Route path='/about' element={<About />} />
-      </Routes>
-      <Routes>
-        <Route path='/programs' element={<Programs />} />
-      </Routes>
-      <Routes>
-        <Route path='/gallary' element={<Gallary />} />
-      </Routes>
-      <Routes>
-        <Route path='/contact' element={<Contact />} />
-      </Routes>
-      <Routes>
-        <Route path='/donate' element={<Donate />} />
-      </Routes>
-
-      <Footer/>
-    </div>
-  );
-}
+const App = () => (
+  <Routes>
+    <Route element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+      <Route path="programs" element={<Programs />} />
+      <Route path="gallery" element={<Gallery />} />
+      {/* Keep the old misspelled URL working for anyone who shared it. */}
+      <Route path="gallary" element={<Navigate to="/gallery" replace />} />
+      <Route path="contact" element={<Contact />} />
+      <Route path="donate" element={<Donate />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  </Routes>
+);
 
 export default App;
